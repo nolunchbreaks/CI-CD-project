@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osagie Anolu - Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a192f;
+            --text-light: #ccd6f6;
+            --accent-color: #64ffda;
+            --text-gray: #8892b0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Mono', monospace;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .terminal-window {
+            background-color: #111827;
+            border-radius: 10px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .terminal-red { background-color: #ff5f56; }
+        .terminal-yellow { background-color: #ffbd2e; }
+        .terminal-green { background-color: #27c93f; }
+        .code-line {
+            color: var(--accent-color);
+            opacity: 0.8;
+        }
+        .project-card {
+            background-color: #112240;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .project-links a:hover {
+            color: var(--text-light);
+        }
+        .section-title {
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .skills-section {
+            background-color: #112240;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            text-align: center;
+        }
+        .skill-item {
+            background-color: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        .contact-section {
+            background-color: #112240;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-dot terminal-red"></span>
+                <span class="terminal-dot terminal-yellow"></span>
+                <span class="terminal-dot terminal-green"></span>
+            </div>
+            <div class="terminal-content">
+                <div class="code-line">$ whoami</div>
+                <div>Osagie Anolu</div>
+                <div class="code-line">$ job_title</div>
+                <div>DevOps Engineer & Cloud Architect</div>
+                <div class="code-line">$ skills</div>
+                <div>AWS | Docker | Kubernetes | CI/CD</div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (72).png') }}" alt="BiteSpace E-commerce full-stack" class="project-image">
+                    <h3>BiteSpace E-commerce</h3>
+                    <p>Cloud-based e-commerce dev</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/BiteSpace" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/-building-and-deploying-an-e-commerce-website-from-scratch-using-html5-css-javascript-and-aws-13gg" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (111).png') }}" alt="Weather Data collection" class="project-image">
+                    <h3>Weather data collection system using S3</h3>
+                    <p>Automated weather data collection</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/weather-project" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/building-a-weather-data-collection-system-with-aws-s3-and-openweather-api-5d74" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (7).png') }}" alt="React app Containerization Project" class="project-image">
+                    <h3>Containerization</h3>
+                    <p>Enterprise-level Docker</p>
+                    <div class="project-links">
+                        <a href="https://github.com/devcloudninjas/docker_handson_projects" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/containerizing-a-three-tier-application-with-docker-a-hands-on-guide-36pk" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (109).png') }}" alt="Terraform Project" class="project-image">
+                    <h3>Terraform</h3>
+                    <p>Nba game day Notification using SNS, Lambda, and terraform</p>
+                    <div class="project-links">
+                        <a href="https://github.com/ifeanyiro9/game-day-notifications_terraform?tab=readme-ov-file" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/deploying-aws-sns-and-lambda-with-terraform-a-step-by-step-guide-and-fixing-errors-along-the-48nf" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (104).png') }}" alt="Recovery AI Project" class="project-image">
+                    <h3>Machine Learning</h3>
+                    <p>Recovery AI chatbot prototype</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/Recovery-AI" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/building-a-chatbot-prototype-for-recovery-ai-using-python-and-aws-3h4m" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (112).png') }}" alt="Greenish-Bee Holistic full-stack app" class="project-image">
+                    <h3>CI-CD</h3>
+                    <p>Deploying a multi-tier application on Kubernetes</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/Greenish-Bee" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/greenish-bee-navigating-the-cloud-native-landscape-1n81" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (113).png') }}" alt="Telegram Bot for a 2000 member group to moderate hate speech" class="project-image">
+                    <h3>Telegram bot</h3>
+                    <p>Admin telegram bot hosted on aws s3 and cloudfront</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/6ixAkTV" target="_blank">GitHub</a>
+                        <a href="https://dev.to/nolunchbreaks_22/building-a-scalable-anti-hate-speech-moderation-bot-for-telegram-a-deep-dive-1de0" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (201).png') }}" alt="Flask API" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/AWS-FastAPI" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='images/Screenshot (167).png') }}" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nolunchbreaks/chatbot" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="your-image.png" alt="Project Name" class="project-image">
+                    <h3>Project Name</h3>
+                    <p>Project Description</p>
+                    <div class="project-links">
+                        <a href="github-link" target="_blank">GitHub</a>
+                        <a href="article-link" target="_blank">Article</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-terminal"></i>
+                    <span>Bash</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-docker"></i>
+                    <span>Docker</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-ship"></i>
+                    <span>Kubernetes</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <span>Terraform</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-linux"></i>
+                    <span>Linux</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Grafana</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-aws"></i>
+                    <span>AWS</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-google"></i>
+                    <span>GCP</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud"></i>
+                    <span>Digital Ocean</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2 class="section-title">Contact</h2>
+            <p>Let's build something amazing together</p>
+            <div class="social-links">
+                <a href="mailto:Osagieanolu22@gmail.com">Email</a>
+                <a href="https://github.com/nolunchbreaks">GitHub</a>
+                <a href="www.linkedin.com/in/osagie-anolu-963b78216">LinkedIn</a>
+                <a href="https://dev.to/nolunchbreaks_22">Dev.to</a>
+            </div>
+        </section>
+    </div>
+   
+    <footer style="text-align: center; padding: 1rem; background-color: #112240; color: var(--text-light); margin-top: 2rem;">
+        © 2025 Osagie Anolu. All Rights Reserved.
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD Dashboard</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #1a202c, #2d3748, #000000);
+      color: white;
+      padding: 1.5rem;
+    }
+    
+    /* Navigation */
+    nav {
+      margin-bottom: 2rem;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Pages */
+    .page {
+      display: none;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    
+    /* Card styles */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
+    
+    .card:hover {
+      transform: scale(1.02);
+    }
+    
+    .card:active {
+      transform: scale(0.98);
+    }
+    
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* List styles */
+    ul {
+      list-style: none;
+    }
+    
+    li {
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    li p:first-child {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+    
+    /* Form elements */
+    .input-group {
+      margin-bottom: 0.5rem;
+    }
+    
+    label {
+      display: block;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.375rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .btn-blue {
+      background-color: #2563eb;
+    }
+    
+    .btn-blue:hover {
+      background-color: #1d4ed8;
+    }
+    
+    .btn-green {
+      background-color: #059669;
+    }
+    
+    .btn-green:hover {
+      background-color: #047857;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" data-page="dashboard" class="nav-link">Dashboard</a>
+    <a href="#" data-page="pipelines" class="nav-link">Pipelines</a>
+    <a href="#" data-page="deployments" class="nav-link">Deployments</a>
+    <a href="#" data-page="settings" class="nav-link">Settings</a>
+  </nav>
+  
+  <div id="dashboard" class="page active">
+    <h1>CI/CD Dashboard</h1>
+    <div class="card-grid">
+      <div class="card">
+        <h2>Last Build</h2>
+        <p>Example content for Last Build</p>
+      </div>
+      <div class="card">
+        <h2>Deployments</h2>
+        <p>Example content for Deployments</p>
+      </div>
+      <div class="card">
+        <h2>Recent Commits</h2>
+        <p>Example content for Recent Commits</p>
+      </div>
+    </div>
+    <button class="btn-blue">Trigger Build</button>
+  </div>
+  
+  <div id="pipelines" class="page">
+    <h1>CI/CD Pipelines</h1>
+    <ul id="pipelines-list">
+      <!-- Populated via JavaScript -->
+    </ul>
+  </div>
+  
+  <div id="deployments" class="page">
+    <h1>Deployments</h1>
+    <ul id="deployments-list">
+      <!-- Populated via JavaScript -->
+    </ul>
+  </div>
+  
+  <div id="settings" class="page">
+    <h1>Settings</h1>
+    <div class="input-group">
+      <label>Git Repository URL</label>
+      <input type="text" placeholder="https://github.com/your/repo">
+    </div>
+    <div class="input-group">
+      <label>Webhook URL</label>
+      <input type="text" placeholder="https://ci.example.com/webhook">
+    </div>
+    <button class="btn-green">Save Settings</button>
+  </div>
+
+  <script>
+    // Data
+    const pipelines = [
+      { name: "Frontend Build", status: "Success" },
+      { name: "API Tests", status: "In Progress" },
+      { name: "Database Migrations", status: "Failed" }
+    ];
+    
+    const environments = [
+      { env: "Dev", status: "Success" },
+      { env: "Staging", status: "In Progress" },
+      { env: "Production", status: "Failed" }
+    ];
+    
+    // Navigation
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetPage = e.target.getAttribute('data-page');
+        showPage(targetPage);
+      });
+    });
+    
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show the selected page
+      document.getElementById(pageId).classList.add('active');
+    }
+    
+    // Populate pipelines
+    function renderPipelines() {
+      const pipelinesList = document.getElementById('pipelines-list');
+      pipelinesList.innerHTML = '';
+      
+      pipelines.forEach(pipeline => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <p>${pipeline.name}</p>
+          <p>Status: ${pipeline.status}</p>
+        `;
+        pipelinesList.appendChild(li);
+      });
+    }
+    
+    // Populate deployments
+    function renderDeployments() {
+      const deploymentsList = document.getElementById('deployments-list');
+      deploymentsList.innerHTML = '';
+      
+      environments.forEach(env => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <p>${env.env} Environment</p>
+          <p>Status: ${env.status}</p>
+        `;
+        deploymentsList.appendChild(li);
+      });
+    }
+    
+    // Add hover animations to cards
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousedown', () => {
+        card.style.transform = 'scale(0.98)';
+      });
+      
+      card.addEventListener('mouseup', () => {
+        card.style.transform = 'scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+      });
+    });
+    
+    // Initialize
+    renderPipelines();
+    renderDeployments();
+  </script>
+</body>
+</html>
