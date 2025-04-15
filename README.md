@@ -46,10 +46,14 @@ The project integrates:
 ## Application Pages
 
 ### Dashboard Page
+![Screenshot (231)](https://github.com/user-attachments/assets/384d32da-56cd-4ebe-976c-1817a15e89e6)
 
 The **Dashboard** page is an overview page typically used for displaying key information or stats. It can be used by administrators to monitor various metrics, or as an overview of the application.
 
 ### Portfolio Page
+![Screenshot (225)](https://github.com/user-attachments/assets/32ee1269-cfdc-471d-a0da-d0586b5af279)
+![Screenshot (226)](https://github.com/user-attachments/assets/54127c80-b73b-4778-a4ae-13d06516b55a)
+![Screenshot (227)](https://github.com/user-attachments/assets/485a8825-c427-4594-a1fe-5496bf6b08b9)
 
 The **Portfolio** page showcases my  work, achievements, and projects. 
 
